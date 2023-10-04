@@ -1,0 +1,116 @@
+version control system -- 
+
+    Version Control: Git is designed to keep a history of changes made to files and directories in a project. 
+	                 It records every change, known as a "commit," along with information about who made the change and when.
+
+    Distributed: Git is a distributed version control system, 
+	             which means that each developer working on a project has a complete copy of the code and its history on their local machine. This allows developers to work offline and collaborate with others without needing a continuous internet connection.
+
+    Branching: Git allows developers to create separate branches of the codebase to work on new features or fixes independently.
+            	Branches are lightweight and can be merged back into the main codebase when the work is complete.
+
+    Merging: Git provides tools for merging changes from one branch into another.  
+	         This makes it possible for multiple developers to work on different parts of a project and then combine their changes seamlessly.
+
+    Collaboration: Git facilitates collaboration among developers by providing a way to share code with others. 
+            	Developers can push their changes to a remote Git repository, allowing team members to access and contribute to the codebase.
+
+    History and Annotations: Git maintains a detailed history of changes, making it easy to understand who made changes, when they were made, and why.
+            	It also supports annotations and comments for commits.
+
+    Tagging: Git allows developers to tag specific commits as releases or milestones,
+              	making it easy to track the progress of a project and create stable versions of the software.
+
+    Security: Git provides features like access control, authentication,
+          	and encryption to ensure the security of code repositories.
+git--
+---------------
+To know who has made chnages in like we can assign user and email id by using below 2 methos
+1-->
+git config --global user.name "prakash"
+git config --global user.email "ab@gmail.com"
+
+2-->
+git config --global --edit
+
+---------------
+
+mkdir newdir
+cd /newdir 
+git init  (initialise git)
+ls -a (list of all files including hidden)
+
+cat > gretereq.sh (create this script in git repo)
+a=10
+b=20
+if [ $a -lt $b ]; then
+echo "a is less than b"
+else
+echo "a is greater than or equal to b"
+fi
+
+git status
+git add gretereq.sh  {comes under staggin area}
+git commit -m "initial commit"  {-m message}
+git log
+
+HEAD is a pointer that moved commit to commit
+
+git add . {all present files we can add at once}
+git commit -m "added all files"
+-------------
+
+git checkout <commit hash code/branch name> {we can switch from one location to another}
+
+--------------
+
+git branch dev {create new branch}
+git branch {list branch}
+git checkout dev {switch to another branch}
+git checkout -b prakash/mutiply {create new branch and switched into it}
+git status
+git add mutiply.sh
+git commit -m "added mutiply.sh"
+git checkout dev
+git merge prakash/mutiply
+git log
+git merge dev
+git log
+--------------------
+
+touch gitignore
+<add files those you want to hide>
+
+git status
+---------------------
+
+git clone <repo path>
+
+---------------------------------Few important commnads-----------------
+
+To skip stage area
+-git commit -am "initial commit"
+
+
+To check files in stageing area
+-git ls-files
+
+
+for checking short status
+-git status -s
+
+logs in oneline
+-git log --oneline
+-git log --oneline --reverse
+
+show changes 
+-git show 
+-git show (id of log)
+
+remove files from staging area
+-git restore --staged (filename)
+
+=======================================================================
+github--
+
+yet to add

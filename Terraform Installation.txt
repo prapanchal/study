@@ -1,0 +1,119 @@
+
+Terraform is automate infrastructure tasks.(Terraform is an infrastructure as code tool )
+It is used to automate the provisioning of your cloud resources. 
+Terraform is an open-source, cloud-agnostic provisioning tool developed by HashiCorp and written in GO language
+
+Terraform advantages
+The human-readable configuration language helps you write infrastructure code quickly. 
+Terraform's state allows you to track resource changes throughout your deployments.
+
+
+
+terraform init     #initializes a new or existing Terraform configuration. This command downloads the necessary provider plugins and sets up the working directory.
+terraform validate # Checks the syntax and validity of your Terraform configuration files without actually creating any resources.
+terraform plan     #Generates an execution plan.
+terraform apply    #This command prompts for confirmation before making changes.
+terraform destroy  #Destroys all the resources defined in your configuration, effectively tearing down the infrastructure.
+
+#Useful for debugging and troubleshooting.
+terraform state list  
+terraform state show <resource_name>  
+
+# Manages workspaces, allowing you to work on multiple instances of the same configuration in isolation.
+terraform workspace new <workspace_name>
+terraform workspace list
+terraform workspace select <workspace_name>
+
+terraform fmt      #: Formats Terraform configuration files to ensure consistent style and formatting.
+
+terraform version  #Displays the Terraform version installed on your system.
+
+=======================================================================
+Terraform
+=======================================================================
+download visual studio
+download terraform
+create folder in C drive 
+extract terraform downloaded file
+take that extracted file path and paste in enviroment variable
+open visual studio 
+
+take below keys to access aws enviroment
+Access key :  AKIAVH2U2EP74WQ6YMVP
+secrete access :  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
+
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs
+
+--------------------------------------------------------------------
+write below code in visualstudio
+--------------------------------------------------------------------
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "aws" {
+  region     = "us-east-1"
+  access_key = "AKIARXQ6BUWLSOYYWZ5S"
+  secret_key = "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"
+}
+
+
+resource "aws_instance" "s1" {
+  ami           = "ami-051f7e7f6c2f40dc1"
+
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "practice"
+  }
+  
+terraform init
+terraform validate
+terraform plan
+terraform apply
+terraform destroy
+
+================================================================================
+CREATE VPC CODE
+================================================================================
+provider "aws" {
+  region     = "ap-south-1"
+  access_key = "accesskey"
+  secret_key = "secreatkey"
+}
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+
+  name = "my-vpc"
+  cidr = "10.0.0.0/16"
+
+  azs             = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
+  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+
+  enable_nat_gateway = true
+  enable_vpn_gateway = true
+
+  tags = {
+    Terraform = "true"
+    Environment = "dev"
+  }
+}
+
+=======================================================================

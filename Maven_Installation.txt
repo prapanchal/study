@@ -1,0 +1,48 @@
+		cd /mnt
+  202   ls
+  203  wget https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip
+  204  ls
+  205  unzip apache-maven-3.8.6-bin.zip
+  206  ls
+  207  rf -rf apache-maven-3.8.6-bin.zip
+  208  rm -rf apache-maven-3.8.6-bin.zip
+  209  ls
+  210  cd apache-maven-3.8.6
+  211  ls
+  212  cd bin
+  213  ls
+  214  mvn
+  215  ./mvn --version
+  216  cd ~
+  217  ./mvn --version
+  218  mvn --version
+  219  ls
+  220  vi ~/.bashrc  >>> add this conntent : 
+  
+  {  if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+		fi
+
+		## set env variable
+		export MAVEN_HOME=/mnt/apache-maven-3.8.6
+		export PATH=$MAVEN_HOME/bin:$PATH
+		PATH=$PATH:$HOME/bin
+
+		export PATH
+		
+  221  ls
+  222  cd /mnt
+  223  ls
+  224  cd apache-maven-3.8.6/
+  225  ls
+  226  pwd
+  227  cd ~
+  228  vi ~/.bashrc
+  229  mvn --version
+  230  source ~/.bashrc
+  231  mvn --version
+  232  ls
+  233  cd Jenkins/
+  234  mvn --version
+  235  cd ~
+  236  history
